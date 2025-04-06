@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TorusAI Chat</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <header>
+        <img src="/static/logo.png" alt="TorusAI Logo" class="logo">
+        <h1>TorusAI SQL Chat</h1>
+    </header>
+    <main>
+        <section class="chat-container">
+            <form method="post" action="/chat" class="chat-form">
+                <input type="text" name="question" placeholder="Ask a question about publications..." required>
+                <button type="submit">Ask TorusAI</button>
+            </form>
+            {% if response %}
+                <div class="response-container">
+                    <h2>Response</h2>
+                    <p>{{ response }}</p>
+                    <h3>SQL Query</h3>
+                    <pre>{{ sql_query }}</pre>
+                </div>
+            {% endif %}
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 TorusAI. Intelligence for Life.</p>
+    </footer>
+</body>
+</html>

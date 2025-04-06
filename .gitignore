@@ -1,0 +1,37 @@
+# Python bytecode and cache files
+__pycache__/
+*.py[cod]
+*.so
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtual environments
+.env
+*.env
+*.venv
+.venv/
+env/
+venv/
+
+# SQLite database files
+*.db
+
+# Model checkpoints, tokenizers, configs, training files (all large model files)
+*.bin
+*.pt
+*.safetensors
+*.json
+*.arrow
+*.log
+*.pkl
+
+# Logs (logs folder and log files)
+logs/
+*.log
+
+# Ignore app folder results (large training results and files)
+app/__pycache__/
+app/results/
+app/*.log
+!app/*.py  # Allow Python code files

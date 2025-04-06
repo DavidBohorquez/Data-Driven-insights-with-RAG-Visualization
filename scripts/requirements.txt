@@ -1,0 +1,10 @@
+requests
+transformers
+torch
+matplotlib
+datasets
+accelerate
+sqlalchemy
+fastapi
+uvicorn
+huggingface_hub[hf_xet]
