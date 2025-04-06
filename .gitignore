@@ -22,6 +22,7 @@ venv/
 *.pt
 *.safetensors
 *.json
+!data/sql_dataset.json
 *.arrow
 *.log
 *.pkl

@@ -1,0 +1,402 @@
+[
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List all authors.",
+        "output": "SELECT name FROM authors;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Show all journal names.",
+        "output": "SELECT name FROM journals;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Get all publication titles.",
+        "output": "SELECT title FROM publications;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Retrieve all publication dates.",
+        "output": "SELECT publication_date FROM publications;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List all author IDs.",
+        "output": "SELECT id FROM authors;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Show all journal IDs.",
+        "output": "SELECT id FROM journals;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Get all publication IDs.",
+        "output": "SELECT id FROM publications;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List all publication titles and dates.",
+        "output": "SELECT title, publication_date FROM publications;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Show all author names and IDs.",
+        "output": "SELECT id, name FROM authors;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Retrieve all journal names and IDs.",
+        "output": "SELECT id, name FROM journals;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find authors named 'Hang Nguyen'.",
+        "output": "SELECT * FROM authors WHERE name = 'Hang Nguyen';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find authors with 'Nguyen' in their name.",
+        "output": "SELECT * FROM authors WHERE name LIKE '%Nguyen%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find publications from 2023.",
+        "output": "SELECT * FROM publications WHERE publication_date LIKE '%2023%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find journals named 'JAAD International'.",
+        "output": "SELECT * FROM journals WHERE name = 'JAAD International';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find publications titled 'Using artificial intelligence to compute Severity of Alopecia Tool (SALT) scores'.",
+        "output": "SELECT * FROM publications WHERE title = 'Using artificial intelligence to compute Severity of Alopecia Tool (SALT) scores';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find authors with 'Zung' in their name.",
+        "output": "SELECT * FROM authors WHERE name LIKE '%Zung%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find publications before 2020.",
+        "output": "SELECT * FROM publications WHERE publication_date < '2020-01-01';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find journals with 'Journal' in their name.",
+        "output": "SELECT * FROM journals WHERE name LIKE '%Journal%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find publications after 2021.",
+        "output": "SELECT * FROM publications WHERE publication_date > '2021-12-31';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find authors named 'Nguyen, Z.T.'.",
+        "output": "SELECT * FROM authors WHERE name = 'Nguyen, Z.T.';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find publications from 2022 with 'AI' in the title.",
+        "output": "SELECT * FROM publications WHERE publication_date LIKE '%2022%' AND title LIKE '%AI%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find journals not named 'JAAD International'.",
+        "output": "SELECT * FROM journals WHERE name != 'JAAD International';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find authors whose names start with 'A'.",
+        "output": "SELECT * FROM authors WHERE name LIKE 'A%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find publications with 'Tool' in the title.",
+        "output": "SELECT * FROM publications WHERE title LIKE '%Tool%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find journals with IDs greater than 5.",
+        "output": "SELECT * FROM journals WHERE id > 5;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find publications from January 2023.",
+        "output": "SELECT * FROM publications WHERE publication_date LIKE '%2023-01%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find authors with 'Smith' as the last name.",
+        "output": "SELECT * FROM authors WHERE name LIKE '%Smith';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find journals containing 'Dermatology'.",
+        "output": "SELECT * FROM journals WHERE name LIKE '%Dermatology%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find publications between 2020 and 2022.",
+        "output": "SELECT * FROM publications WHERE publication_date BETWEEN '2020-01-01' AND '2022-12-31';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find authors with IDs less than 10.",
+        "output": "SELECT * FROM authors WHERE id < 10;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List all publications by 'Hang Nguyen'.",
+        "output": "SELECT p.title FROM publications p JOIN publication_authors pa ON p.id = pa.publication_id JOIN authors a ON pa.author_id = a.id WHERE a.name = 'Hang Nguyen';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find all authors who have published in 'JAAD International'.",
+        "output": "SELECT DISTINCT a.name FROM authors a JOIN publication_authors pa ON a.id = pa.author_id JOIN publications p ON pa.publication_id = p.id JOIN journals j ON p.journal_id = j.id WHERE j.name = 'JAAD International';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find all journals where 'Zung Nguyen' has published.",
+        "output": "SELECT DISTINCT j.name FROM journals j JOIN publications p ON j.id = p.journal_id JOIN publication_authors pa ON p.id = pa.publication_id JOIN authors a ON pa.author_id = a.id WHERE a.name = 'Zung Nguyen';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List publication titles and their journal names.",
+        "output": "SELECT p.title, j.name FROM publications p JOIN journals j ON p.journal_id = j.id;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find authors of the publication 'Using artificial intelligence to compute Severity of Alopecia Tool (SALT) scores'.",
+        "output": "SELECT a.name FROM authors a JOIN publication_authors pa ON a.id = pa.author_id JOIN publications p ON pa.publication_id = p.id WHERE p.title = 'Using artificial intelligence to compute Severity of Alopecia Tool (SALT) scores';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List all publications from 2023 with their journal names.",
+        "output": "SELECT p.title, j.name FROM publications p JOIN journals j ON p.journal_id = j.id WHERE p.publication_date LIKE '%2023%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find journals with publications by 'Nguyen, Z.T.'.",
+        "output": "SELECT DISTINCT j.name FROM journals j JOIN publications p ON j.id = p.journal_id JOIN publication_authors pa ON p.id = pa.publication_id JOIN authors a ON pa.author_id = a.id WHERE a.name = 'Nguyen, Z.T.';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List all authors and their publication titles.",
+        "output": "SELECT a.name, p.title FROM authors a JOIN publication_authors pa ON a.id = pa.author_id JOIN publications p ON pa.publication_id = p.id;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find publications in 'JAAD International' from 2022.",
+        "output": "SELECT p.title FROM publications p JOIN journals j ON p.journal_id = j.id WHERE j.name = 'JAAD International' AND p.publication_date LIKE '%2022%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List authors who published before 2021 with their publication titles.",
+        "output": "SELECT a.name, p.title FROM authors a JOIN publication_authors pa ON a.id = pa.author_id JOIN publications p ON pa.publication_id = p.id WHERE p.publication_date < '2021-01-01';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find journals with publications titled containing 'AI'.",
+        "output": "SELECT DISTINCT j.name FROM journals j JOIN publications p ON j.id = p.journal_id WHERE p.title LIKE '%AI%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List publication titles by authors with 'Nguyen' in their name.",
+        "output": "SELECT p.title FROM publications p JOIN publication_authors pa ON p.id = pa.publication_id JOIN authors a ON pa.author_id = a.id WHERE a.name LIKE '%Nguyen%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find all authors who published in journals with 'Dermatology' in the name.",
+        "output": "SELECT DISTINCT a.name FROM authors a JOIN publication_authors pa ON a.id = pa.author_id JOIN publications p ON pa.publication_id = p.id JOIN journals j ON p.journal_id = j.id WHERE j.name LIKE '%Dermatology%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List journals and the titles published in them after 2020.",
+        "output": "SELECT j.name, p.title FROM journals j JOIN publications p ON j.id = p.journal_id WHERE p.publication_date > '2020-12-31';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find publications by 'Hang Nguyen' in 2023.",
+        "output": "SELECT p.title FROM publications p JOIN publication_authors pa ON p.id = pa.publication_id JOIN authors a ON pa.author_id = a.id WHERE a.name = 'Hang Nguyen' AND p.publication_date LIKE '%2023%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List authors who published in 'JAAD International' before 2022.",
+        "output": "SELECT DISTINCT a.name FROM authors a JOIN publication_authors pa ON a.id = pa.author_id JOIN publications p ON pa.publication_id = p.id JOIN journals j ON p.journal_id = j.id WHERE j.name = 'JAAD International' AND p.publication_date < '2022-01-01';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find journals with publications by multiple authors named 'Nguyen'.",
+        "output": "SELECT DISTINCT j.name FROM journals j JOIN publications p ON j.id = p.journal_id JOIN publication_authors pa ON p.id = pa.publication_id JOIN authors a ON pa.author_id = a.id WHERE a.name LIKE '%Nguyen%' GROUP BY j.name, p.id HAVING COUNT(a.id) > 1;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List publication titles and journal names for publications before 2019.",
+        "output": "SELECT p.title, j.name FROM publications p JOIN journals j ON p.journal_id = j.id WHERE p.publication_date < '2019-01-01';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find authors who published in 'Journal of Dermatology' in 2021.",
+        "output": "SELECT DISTINCT a.name FROM authors a JOIN publication_authors pa ON a.id = pa.author_id JOIN publications p ON pa.publication_id = p.id JOIN journals j ON p.journal_id = j.id WHERE j.name = 'Journal of Dermatology' AND p.publication_date LIKE '%2021%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List all publications and their authors from 'JAAD International'.",
+        "output": "SELECT p.title, a.name FROM publications p JOIN publication_authors pa ON p.id = pa.publication_id JOIN authors a ON pa.author_id = a.id JOIN journals j ON p.journal_id = j.id WHERE j.name = 'JAAD International';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find journals where 'Zung Nguyen' published in 2020.",
+        "output": "SELECT DISTINCT j.name FROM journals j JOIN publications p ON j.id = p.journal_id JOIN publication_authors pa ON p.id = pa.publication_id JOIN authors a ON pa.author_id = a.id WHERE a.name = 'Zung Nguyen' AND p.publication_date LIKE '%2020%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List authors and their publications after 2022.",
+        "output": "SELECT a.name, p.title FROM authors a JOIN publication_authors pa ON a.id = pa.author_id JOIN publications p ON pa.publication_id = p.id WHERE p.publication_date > '2022-12-31';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find publications in 'JAAD International' with 'Tool' in the title.",
+        "output": "SELECT p.title FROM publications p JOIN journals j ON p.journal_id = j.id WHERE j.name = 'JAAD International' AND p.title LIKE '%Tool%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List authors who published in multiple journals named 'Nguyen'.",
+        "output": "SELECT a.name FROM authors a JOIN publication_authors pa ON a.id = pa.author_id JOIN publications p ON pa.publication_id = p.id JOIN journals j ON p.journal_id = j.id WHERE a.name LIKE '%Nguyen%' GROUP BY a.name HAVING COUNT(DISTINCT j.id) > 1;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find journals with publications by 'Smith, J.'.",
+        "output": "SELECT DISTINCT j.name FROM journals j JOIN publications p ON j.id = p.journal_id JOIN publication_authors pa ON p.id = pa.publication_id JOIN authors a ON pa.author_id = a.id WHERE a.name = 'Smith, J.';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Count the number of publications per author.",
+        "output": "SELECT a.name, COUNT(pa.publication_id) AS num_publications FROM authors a LEFT JOIN publication_authors pa ON a.id = pa.author_id GROUP BY a.name;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find the author with the most publications.",
+        "output": "SELECT a.name, COUNT(pa.publication_id) AS num_publications FROM authors a JOIN publication_authors pa ON a.id = pa.author_id GROUP BY a.name ORDER BY num_publications DESC LIMIT 1;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Count the number of authors per publication.",
+        "output": "SELECT p.title, COUNT(pa.author_id) AS num_authors FROM publications p LEFT JOIN publication_authors pa ON p.id = pa.publication_id GROUP BY p.title;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Count publications per journal.",
+        "output": "SELECT j.name, COUNT(p.id) AS num_publications FROM journals j LEFT JOIN publications p ON j.id = p.journal_id GROUP BY j.name;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find the journal with the most publications.",
+        "output": "SELECT j.name, COUNT(p.id) AS num_publications FROM journals j JOIN publications p ON j.id = p.journal_id GROUP BY j.name ORDER BY num_publications DESC LIMIT 1;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Count authors who published in 2023.",
+        "output": "SELECT COUNT(DISTINCT a.id) AS num_authors FROM authors a JOIN publication_authors pa ON a.id = pa.author_id JOIN publications p ON pa.publication_id = p.id WHERE p.publication_date LIKE '%2023%';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Count publications in 'JAAD International'.",
+        "output": "SELECT COUNT(p.id) AS num_publications FROM publications p JOIN journals j ON p.journal_id = j.id WHERE j.name = 'JAAD International';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find the total number of authors across all publications.",
+        "output": "SELECT COUNT(DISTINCT pa.author_id) AS total_authors FROM publication_authors pa;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Count publications by 'Hang Nguyen'.",
+        "output": "SELECT COUNT(p.id) AS num_publications FROM publications p JOIN publication_authors pa ON p.id = pa.publication_id JOIN authors a ON pa.author_id = a.id WHERE a.name = 'Hang Nguyen';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find journals with more than 5 publications.",
+        "output": "SELECT j.name, COUNT(p.id) AS num_publications FROM journals j JOIN publications p ON j.id = p.journal_id GROUP BY j.name HAVING COUNT(p.id) > 5;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Count authors per journal.",
+        "output": "SELECT j.name, COUNT(DISTINCT a.id) AS num_authors FROM journals j JOIN publications p ON j.id = p.journal_id JOIN publication_authors pa ON p.id = pa.publication_id JOIN authors a ON pa.author_id = a.id GROUP BY j.name;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find the average number of publications per author.",
+        "output": "SELECT AVG(num_pubs) AS avg_publications FROM (SELECT COUNT(pa.publication_id) AS num_pubs FROM authors a LEFT JOIN publication_authors pa ON a.id = pa.author_id GROUP BY a.id) AS author_counts;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Count publications from 2022 per journal.",
+        "output": "SELECT j.name, COUNT(p.id) AS num_publications FROM journals j JOIN publications p ON j.id = p.journal_id WHERE p.publication_date LIKE '%2022%' GROUP BY j.name;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find authors with more than 3 publications.",
+        "output": "SELECT a.name, COUNT(pa.publication_id) AS num_publications FROM authors a JOIN publication_authors pa ON a.id = pa.author_id GROUP BY a.name HAVING COUNT(pa.publication_id) > 3;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Count total publications before 2021.",
+        "output": "SELECT COUNT(id) AS num_publications FROM publications WHERE publication_date < '2021-01-01';"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find authors who have published in more than one journal.",
+        "output": "SELECT a.name FROM authors a JOIN publication_authors pa ON a.id = pa.author_id JOIN publications p ON pa.publication_id = p.id JOIN journals j ON p.journal_id = j.id GROUP BY a.name HAVING COUNT(DISTINCT j.id) > 1;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find publications with more than two authors.",
+        "output": "SELECT p.title FROM publications p JOIN publication_authors pa ON p.id = pa.publication_id GROUP BY p.title HAVING COUNT(pa.author_id) > 2;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Calculate the average number of authors per publication.",
+        "output": "SELECT AVG(num_authors) AS average_authors FROM (SELECT COUNT(pa.author_id) AS num_authors FROM publications p LEFT JOIN publication_authors pa ON p.id = pa.publication_id GROUP BY p.id) AS author_counts;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find authors who published in 'JAAD International' and 'Journal of Dermatology'.",
+        "output": "SELECT a.name FROM authors a JOIN publication_authors pa ON a.id = pa.author_id JOIN publications p ON pa.publication_id = p.id JOIN journals j ON p.journal_id = j.id WHERE j.name IN ('JAAD International', 'Journal of Dermatology') GROUP BY a.name HAVING COUNT(DISTINCT j.name) = 2;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List publications from 2023 with more than one author.",
+        "output": "SELECT p.title FROM publications p JOIN publication_authors pa ON p.id = pa.publication_id WHERE p.publication_date LIKE '%2023%' GROUP BY p.title HAVING COUNT(pa.author_id) > 1;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find journals with no publications before 2020.",
+        "output": "SELECT j.name FROM journals j WHERE NOT EXISTS (SELECT 1 FROM publications p WHERE p.journal_id = j.id AND p.publication_date < '2020-01-01');"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find authors with publications in every journal.",
+        "output": "SELECT a.name FROM authors a WHERE NOT EXISTS (SELECT j.id FROM journals j WHERE NOT EXISTS (SELECT 1 FROM publications p JOIN publication_authors pa ON p.id = pa.publication_id WHERE p.journal_id = j.id AND pa.author_id = a.id));"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: List publications where 'Hang Nguyen' is the only author.",
+        "output": "SELECT p.title FROM publications p JOIN publication_authors pa ON p.id = pa.publication_id JOIN authors a ON pa.author_id = a.id WHERE a.name = 'Hang Nguyen' GROUP BY p.title HAVING COUNT(pa.author_id) = 1;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find the journal with the highest average authors per publication.",
+        "output": "SELECT j.name, AVG(num_authors) AS avg_authors FROM journals j JOIN (SELECT p.journal_id, COUNT(pa.author_id) AS num_authors FROM publications p LEFT JOIN publication_authors pa ON p.id = pa.publication_id GROUP BY p.id) AS pub_counts ON j.id = pub_counts.journal_id GROUP BY j.name ORDER BY avg_authors DESC LIMIT 1;"
+    },
+    {
+        "instruction": "Generate an SQL query based on the question and schema.",
+        "input": "Schema: authors(id, name), journals(id, name), publications(id, title, journal_id, publication_date), publication_authors(publication_id, author_id)\n Question: Find authors who published more in 2023 than in 2022.",
+        "output": "SELECT a.name FROM authors a JOIN publication_authors pa ON a.id = pa.author_id JOIN publications p ON pa.publication_id = p.id GROUP BY a.name HAVING SUM(CASE WHEN p.publication_date LIKE '%2023%' THEN 1 ELSE 0 END) > SUM(CASE WHEN p.publication_date LIKE '%2022%' THEN 1 ELSE 0 END);"
+    }
+]
