@@ -21,18 +21,23 @@ venv/
 *.bin
 *.pt
 *.safetensors
+*.arrow
+*.pkl
+*.log
 *.json
 !data/sql_dataset.json
-*.arrow
-*.log
-*.pkl
 
 # Logs (logs folder and log files)
 logs/
-*.log
 
-# Ignore app folder results (large training results and files)
+# App-specific ignores
 app/__pycache__/
 app/results/
 app/*.log
-!app/*.py  # Allow Python code files
+!app/**/*.py  # Allow all Python files anywhere in app/
+
+# Jenkins system files
+jenkins_home/
+
+# macOS system files
+.DS_Store
