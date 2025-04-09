@@ -9,7 +9,7 @@ pipeline {
         stage('Install dependencies') {
             steps {
                 echo "Installing Python dependencies for ${SERVICE} service..."
-                sh. "docker-compose exec $SERVICE pip install -r requirements.txt"
+                sh "docker-compose exec $SERVICE pip install -r requirements.txt"
             }
         }
 
