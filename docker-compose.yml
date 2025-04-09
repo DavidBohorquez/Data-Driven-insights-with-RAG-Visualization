@@ -11,3 +11,15 @@ services:
     container_name: sqlite_db
     environment:
       - PYTHONUNBUFFERED=1 # Real-time logs
+
+  jenkins:
+    image: jenkins/jenkins:lts
+    user: root
+    ports:
+      - "8081:8080" # Jenkins UI
+      - "50000:50000" # Jenkins agent
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./app:/app # Mount code for builds
+    container_name: jenkins

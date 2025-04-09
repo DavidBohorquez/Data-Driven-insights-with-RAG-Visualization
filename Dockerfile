@@ -16,6 +16,7 @@ RUN python3 -m venv /opt/sqlcoder_env
 
 # Set environment variables
 ENV PATH="/opt/sqlcoder_env/bin:$PATH"
+ENV PYTHONPATH=/app
 
 # Copy the SQL script into the container
 COPY scripts/requirements.txt .

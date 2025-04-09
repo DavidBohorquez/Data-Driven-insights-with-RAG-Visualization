@@ -30,3 +30,11 @@ class PublicationAuthor(Base):
     __tablename__ = "publication_authors"
     publication_id = Column(Integer, ForeignKey("publications.id"), primary_key=True)
     author_id = Column(Integer, ForeignKey("authors.id"), primary_key=True)
+
+# Dependency to provide a database per request
+def get_db():
+    db = SessionLocal()
+    try:
+        yield db
+    finally:
+        db.close()

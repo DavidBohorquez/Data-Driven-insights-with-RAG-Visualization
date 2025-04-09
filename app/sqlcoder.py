@@ -1,25 +1,21 @@
-import requests
-from transformers import AutoTokenizer, AutoModelForCausalLM, AutoModelForSeq2SeqLM, GenerationConfig
 import torch
-import sqlite3
-import re
-import matplotlib.pyplot as plt
-from datasets import load_from_disk
-from sqlalchemy import create_engine, text
-from sqlalchemy.orm import sessionmaker
-from sqlalchemy.exc import SQLAlchemyError
+from transformers import AutoTokenizer, AutoModelForCausalLM, AutoModelForSeq2SeqLM, GenerationConfig
+from sqlalchemy import text
+from sqlalchemy.orm import Session
+from typing import List, Tuple, Union
 
-# Set device to CPU (avoid GPU memory issues)
+# Set device to CPU
 device = torch.device("cpu")
-
-# Load the fine-tuned model and tokenizer
+print(f"loading sql model...")
+# Load the fine-tuned SQL model and tokenizer
 sql_model_name = "tscholak/3vnuv1vf" # "/data/finetuned_sql_model"
 tokenizer = AutoTokenizer.from_pretrained(sql_model_name)
 tokenizer.pad_token = tokenizer.eos_token
 sql_model = AutoModelForSeq2SeqLM.from_pretrained(sql_model_name).to(device)
 sql_model.config.pad_token_id = sql_model.config.eos_token_id
 
-# Response Generation Model
+print(f"loading response model...")
+# Load the response generation model and tokenizer
 response_model_name = "google/flan-t5-large"
 response_tokenizer = AutoTokenizer.from_pretrained(response_model_name)
 response_tokenizer.pad_token = response_tokenizer.eos_token
@@ -51,12 +47,20 @@ Schema Purpose:
 - journals: Journal metadata
 - authors: Author information
 
+Table Columns:
+- publications: id (INTEGER PRIMARY KEY), title (TEXT), journal_id (INTEGER), publication_date (TEXT, format like 'April 2024' or '2023')
+- publication_authors: publication_id (INTEGER), author_id (INTEGER)
+- journals: id (INTEGER PRIMARY KEY), name (TEXT)
+- authors: id (INTEGER PRIMARY KEY), name (TEXT)
+
 Query Guidelines:
-1. For publication counts ALWAYS use publications table
-2. Only use publication_authors when explicitly asked about:
+1. For publication counts ALWAYS use publications table.
+2. When counting rows, use COUNT(*) without a table alias (e.g., NOT t1.COUNT(*), but COUNT(*)).
+3. Only use publication_authors when explicitly asked about:
    - Authorship details
    - Author-specific counts
-3. Use journals table only when journal names/filtering are needed
+4. Use journals table only when journal names/filtering are needed.
+5. When joining publications and publication_authors, use publications.id = publication_authors.publication_id.
 
 Table Relationships:
 - publications.journal_id → journals.id
@@ -64,51 +68,74 @@ Table Relationships:
 - publication_authors.author_id → authors.id
 
 Optimization:
-- Prefer EXISTS over JOINs when possible
-- Use COUNT(DISTINCT ) when dealing with junction tables
+- Prefer EXISTS over JOINs when possible.
+- Use COUNT(DISTINCT ) when dealing with junction tables.
 
 Example Queries:
 1. How many publications? → SELECT COUNT(*) FROM publications
-2. Authors per publication? → SELECT publication_id, COUNT(*) FROM publication_authors GROUP BY 1
-3. Publications by journal? → SELECT j.name, COUNT(p.id) FROM publications p JOIN journals j ON p.journal_id = j.id GROUP BY 1
+2. How many authors per publication? → SELECT p.id, COUNT(pa.author_id) FROM publications p JOIN publication_authors pa ON p.id = pa.publication_id GROUP BY p.id
+3. Publications by journal? → SELECT j.name, COUNT(p.id) FROM publications p JOIN journals j ON p.journal_id = j.id GROUP BY j.name
 '''
 
-# Setup SQLAlchemy connection
-DATABASE_URL = "sqlite:////data/publications.db"
-engine = create_engine(DATABASE_URL, echo=True)
-SessionLocal = sessionmaker(bind=engine)
-session = SessionLocal()
+def generate_sql_query(question: str) -> str:
+    """
+    Generate SQL query from natural language question.
 
-def generate_visualization(question, results):
-    plt.clf()
-    keywords = ["chart", "graph", "show", "illustrate"]
-    pattern = r"\b(visuali\w*)\b"
-    if any(word in question.lower() for word in keywords) or re.search(pattern, question, re.IGNORECASE):
-        labels = [row[0] if len(row) > 1 else "Count" for row in results]
-        values = [row[1] if len(row) > 1 else row[0] for row in results]
-        plt.bar(labels, values)
-        plt.title(f"Visualization")
-        plt.xlabel("Categories")
-        plt.ylabel("Values")
-        plt.savefig("/data/visualization.png")
-        print("Visualization saved as /data/visualization.png")
-        plt.show()
+    Args:
+        question (str): Natural language question.
 
-def generate_response(question, results, has_data):
-    if not has_data:
-        return "No relevant data available."
+    Returns:
+        str: The generated SQL query.
+    """
+    input_text = f"""Schema: {schema}
+    Current Question: {question}
+    Generate ONLY the SQL SELECT query:"""
     
-    processed_results = []
-    for row in results:
-        if len(row) == 1:
-            processed_results.append(str(row[0]))
-        else:
-            processed_results.append(", ".join(map(str, row)))
-    # Placeholder for RAG response
-    context = "\n".join(processed_results)
+    inputs = tokenizer(input_text, return_tensors="pt").to(device)
+    outputs = sql_model.generate(**inputs, generation_config=sql_gen_config)
+    
+    sql_query = tokenizer.decode(outputs[0], skip_special_tokens=True).strip()
+    return sql_query
+
+def execute_sql_query(db: Session, sql_query: str) -> Tuple[list, Union[str, None]]:
+    """Execute the SQL query using the provided database session and return the results or an error message.
+    
+    Args:
+        db (Session): The database session for the current request.
+        sql_query (str): The SQL query to execute.
+
+    Returns:
+        tuple[list, str | None]: A tuple containing the query results and an error message (str or None).
+    """
+    if not sql_query.upper().startswith("SELECT"):
+        return [], "Invalid SQL query generated. Skipping execution."
+
+    try:
+        result = db.execute(text(sql_query))
+        results = result.fetchall()
+        return results, None
+    except Exception as e:
+        return [], f"Database error: {str(e)}"
+
+def generate_response(question: str, results: list) -> str:
+    """
+    Generate a natural language response based on the question and SQL query results.
+
+    Args:
+        question (str): The user's question.
+        results (list): The results from the database query.
+
+        Returns:
+        str: A natural language response.
+    """
+    if not results:
+        return "No relevant data available."
+
+    # Convert results to a string context
+    context = "\n".join([", ".join(map(str, row)) for row in results])
 
     response_prompt = f"""Interpret these database results for a non-technical user:
-
+    
     Question: {question}
     Raw Results: {context}
 
@@ -116,51 +143,15 @@ def generate_response(question, results, has_data):
 
     response_inputs = response_tokenizer(response_prompt, return_tensors="pt").to(device)
     response_outputs = response_model.generate(**response_inputs, generation_config=response_gen_config)
-    return response_tokenizer.decode(response_outputs[0], skip_special_tokens=True)
+    response = response_tokenizer.decode(response_outputs[0], skip_special_tokens=True)
+    return response
 
-# Interactive loop for natural language queries
-print("Torus.ai API is ready!")
-while True:
-    question = input("Enter your question (or 'quit' to exit): ")
-    if question.lower() == "quit":
-        break
+def generate_visualization(question: str, result: List) -> None:
+    """Generate a visualization (placeholder for web adaptation).
 
-    input_text = f"""Schema: {schema}
-    Current Question: {question}
-    Generate ONLY the SQL SELECT query:"""
-    inputs = tokenizer(input_text, return_tensors="pt").to(device)
-
-    outputs = sql_model.generate(**inputs, generation_config=sql_gen_config)
-    sql_query = tokenizer.decode(outputs[0], skip_special_tokens=True)
-    print(f"Generated SQL query: {sql_query}")
-
-    if not sql_query.strip().upper().startswith("SELECT"):
-        print("Invalid SQL query generated. Skipping execution.")
-        continue
-
-    try:
-        with engine.connect() as connection:
-            result = connection.execute(text(sql_query))
-            results = result.fetchall()
-            has_data = bool(results)
-
-            if has_data:
-                print("Results:")
-                for row in results:
-                    print(row)
-                
-                response = generate_response(question, results, has_data)
-                print(f"Response: {response}")
-                
-                generate_visualization(question, results)
-            else:
-                print("No results found.")
-                print("Response: No relevant data available.")
-
-    except SQLAlchemyError as e:
-        print(f"Error executing query: {e}")
-    except Exception as e:
-        print(f"Unexpected error: {e}")
-
-session.close()
-print("Goodbye!")
+    Args:
+        question (str): The user's question.
+        results (list): The results from the database query.
+    """
+    # For web use, consider returning a base64 image or serving via an endpoint
+    pass

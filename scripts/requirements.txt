@@ -8,3 +8,6 @@ sqlalchemy
 fastapi
 uvicorn
 huggingface_hub[hf_xet]
+python-multipart
+pytest
+pytest-mock
