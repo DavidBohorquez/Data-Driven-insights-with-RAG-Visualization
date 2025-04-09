@@ -13,7 +13,9 @@ services:
       - PYTHONUNBUFFERED=1 # Real-time logs
 
   jenkins:
-    image: jenkins/jenkins:lts
+    build:
+      context: .
+      dockerfile: Dockerfile.ci # Custom Dockerfile for Jenkins
     user: root
     ports:
       - "8081:8080" # Jenkins UI
