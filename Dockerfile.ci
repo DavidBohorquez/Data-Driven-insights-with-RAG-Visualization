@@ -4,7 +4,7 @@ USER root
 
 # Install Docker CLI
 RUN apt-get update && \
-    apt-get install -y docker.io && \
+    apt-get install -y docker.io lsof && \
     apt-get clean
 
 # Optional: install Docker Compose if needed
