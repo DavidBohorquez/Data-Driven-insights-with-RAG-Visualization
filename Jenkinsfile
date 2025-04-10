@@ -8,9 +8,25 @@ pipeline {
 
     environment {
         SERVICE = 'sqlite'
+        SQLITE_PORT = '8082'
+        JENKINS_PORT = '8081'
     }
 
     stages {
+        stage('Verify Ports') {
+            steps {
+                echo "Checking if ports are available..."
+                sh """
+                    # Check if ports are in use
+                    if lsof -i :${SQLITE_PORT} > /dev/null || lsof -i :${JENKINS_PORT} > /dev/null; then
+                        echo "Ports ${SQLITE_PORT} or ${JENKINS_PORT} are in use. Stopping conflicting processes..."
+                        lsof -ti :${SQLITE_PORT} | xargs kill -9 || true
+                        lsof -ti :${JENKINS_PORT} | xargs kill -9 || true
+                    fi
+                """
+            }
+        }
+
         stage('Start services') {
             steps {
                 echo "Stopping any existing services..."
