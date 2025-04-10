@@ -7,7 +7,7 @@ services:
       - ./scripts:/scripts
 
     ports:
-      - "8082:8080"
+      - "8090:8080"
     #container_name: sqlite_db
     environment:
       - PYTHONUNBUFFERED=1 # Real-time logs
@@ -19,7 +19,7 @@ services:
     image: jenkins-ci:latest
     user: root
     ports:
-      - "8081:8080" # Jenkins UI
+      - "8091:8080" # Jenkins UI
       - "50000:50000" # Jenkins agent
     volumes:
       - ./jenkins_home:/var/jenkins_home
