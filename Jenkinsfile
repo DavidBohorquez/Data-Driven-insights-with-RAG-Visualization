@@ -12,8 +12,10 @@ pipeline {
 
     stages {
         stage('Start services') {
-            echo "Starting docker-compose services..."
-            sh 'docker-compose up -d'
+            steps {
+                echo "Starting docker-compose services..."
+                sh 'docker-compose up -d'
+            }
         }
 
         stage('Install dependencies') {
