@@ -13,16 +13,17 @@ pipeline {
     }
 
     stages {
+        stages {
         stage('Verify Ports') {
             steps {
                 echo "Checking if ports are available..."
                 sh """
-                    # Check if ports are in use
-                    if lsof -i :${SQLITE_PORT} > /dev/null || lsof -i :${JENKINS_PORT} > /dev/null; then
-                        echo "Ports ${SQLITE_PORT} or ${JENKINS_PORT} are in use. Stopping conflicting processes..."
-                        lsof -ti :${SQLITE_PORT} | xargs kill -9 || true
-                        lsof -ti :${JENKINS_PORT} | xargs kill -9 || true
-                    fi
+                    # Stop any existing containers that might be using our ports
+                    docker ps -q --filter "publish=8081" | xargs -r docker stop
+                    docker ps -q --filter "publish=8080" | xargs -r docker stop
+                    
+                    # Wait a moment for ports to be released
+                    sleep 5
                 """
             }
         }
@@ -31,9 +32,18 @@ pipeline {
             steps {
                 echo "Stopping any existing services..."
                 sh 'docker-compose down -v --remove-orphans || true'
+                
+                echo "Cleaning up Docker resources..."
+                sh '''
+                    docker system prune -f
+                    docker network prune -f
+                '''
 
                 echo "Starting docker-compose services..."
-                sh 'docker-compose up -d --no-recreate'
+                sh '''
+                    docker-compose up -d --force-recreate
+                    sleep 15  # Give services more time to start
+                '''
             }
         }
 
