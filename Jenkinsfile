@@ -14,7 +14,7 @@ pipeline {
         stage('Start services') {
             steps {
                 echo "Stopping any existing services..."
-                sh 'docker-compose down || true'
+                sh 'docker-compose down -v --remove-orphans || true'
 
                 echo "Starting docker-compose services..."
                 sh 'docker-compose up -d'
