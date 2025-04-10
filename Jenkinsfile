@@ -11,7 +11,7 @@ pipeline {
     }
 
     stages {
-        '''stage('Start services') {
+        /*stage('Start services') {
             steps {
                 echo "Stopping any existing services..."
                 sh 'docker-compose down -v --remove-orphans || true'
@@ -26,7 +26,7 @@ pipeline {
                 echo "Installing Python dependencies for ${SERVICE} service..."
                 sh "docker-compose exec $SERVICE pip install -r requirements.txt"
             }
-        }'''
+        }*/
 
         stage('Run tests') {
             steps {
