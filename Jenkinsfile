@@ -1,7 +1,7 @@
 pipeline {
     agent {
         docker {
-            image 'jenkins-custom-ci:latest' // Custom Jenkins image with Docker and Docker Compose installed'
+            image 'jenkins-ci:latest' // Custom Jenkins image with Docker and Docker Compose installed'
             args '-u root -v /var/run/docker.sock:/var/run/docker.sock -v $WORKSPACE:/workspace -w /workspace' // Mount Docker socket so compose can communicate with Docker daemon
         }
     }
