@@ -8,7 +8,7 @@ services:
 
     ports:
         - "8080:8080"
-    container_name: sqlite_db
+    #container_name: sqlite_db
     environment:
       - PYTHONUNBUFFERED=1 # Real-time logs
 
