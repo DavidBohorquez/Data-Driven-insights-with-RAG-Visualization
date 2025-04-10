@@ -16,6 +16,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.ci # Custom Dockerfile for Jenkins
+    image: jenkins-ci:latest
     user: root
     ports:
       - "8081:8080" # Jenkins UI
