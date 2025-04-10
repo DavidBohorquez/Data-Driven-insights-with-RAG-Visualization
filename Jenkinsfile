@@ -13,6 +13,9 @@ pipeline {
     stages {
         stage('Start services') {
             steps {
+                echo "Stopping any existing services..."
+                sh 'docker-compose down || true'
+
                 echo "Starting docker-compose services..."
                 sh 'docker-compose up -d'
             }
