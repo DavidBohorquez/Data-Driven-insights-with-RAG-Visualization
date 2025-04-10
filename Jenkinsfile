@@ -13,7 +13,6 @@ pipeline {
     }
 
     stages {
-        stages {
         stage('Verify Ports') {
             steps {
                 echo "Checking if ports are available..."
